@@ -8,8 +8,7 @@ class RequestApi {
             document.getElementById("preloader").style.display = "none";
         }
     }
-//post запрос реализован 1 для любых вариантов использования (как для авторизации так и для отправки данных)
-//соответственно из-за этого там есть проверки на наличие опредленных данных для корректной работы в каждом случае
+
     post = async (options) => {
         const { endpoint, body } = options;
         try {
@@ -35,7 +34,7 @@ class RequestApi {
             if (response.ok) {
                 const resultRequest = await response.json();
                 if (resultRequest.token) {
-                    this.tokenAuthorization = resultRequest.token;//получаем 1-й токен
+                    this.tokenAuthorization = resultRequest.token;
                 }
                 if (resultRequest._id) {
                     this.cardAddId = resultRequest._id;
@@ -47,7 +46,7 @@ class RequestApi {
             } else {
                 const resultRequest = await response.json();
                 const errorMessage = new ModalWindowError(resultRequest);
-                errorMessage.renderWindowError();//сообщение с сервера о ошибках авторизации/регистрации
+                errorMessage.renderWindowError();
                 this.preloader(false);
                 if (submitButton) {
                     submitButton.removeAttribute("disabled");
