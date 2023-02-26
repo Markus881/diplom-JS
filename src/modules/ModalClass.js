@@ -1,4 +1,3 @@
-//даный клас для того чтоб показывать маленькую модалку в форме в случае ошибки авторизации/регистрации или же ее успехе
 class ModalWindow {
     renderWindow () {
         const modalContainer = document.createElement("div");
