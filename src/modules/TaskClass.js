@@ -9,7 +9,7 @@ export class Task {
         this.inputTaskDescription = inputTaskDescription;
         this.baseEndpointTask = "https://byte-tasks.herokuapp.com/api/task/";
     }
-    //рендер основной формы для карточек задач
+  
     async renderTaskForm(container) {
         const taskFormContainer = document.createElement("div");
         taskFormContainer.classList.add("project__taskform-container");
@@ -21,7 +21,7 @@ export class Task {
 
         const button = document.createElement("button");
         button.innerText = "ADD";
-        button.id = "submit-button"; //должен совпадать с id формы авторизации
+        button.id = "submit-button"; 
         taskForm.append(button);
         taskFormContainer.append(taskForm);
         taskFormContainer.classList.add("set-opacity");
@@ -46,7 +46,7 @@ export class Task {
             token: request.tokenAuthorization,
         })
 
-        this.renderAllCards(request.resultGetRequest); // рендерим все карточки что были созданы ранее
+        this.renderAllCards(request.resultGetRequest);
     }
 
     async submitTaskForm(formData) {
@@ -64,7 +64,7 @@ export class Task {
             input_task_description: description
         } = resultSubmit;
         if (!description) {
-            description = "No description." //проверяем указал ли пользователь дополнительную информацию. Емли нет, то пишем "No description"
+            description = "No description."
         }
         let endpoint = this.baseEndpointTask;
         const bodyAddTask = {
@@ -77,17 +77,16 @@ export class Task {
             body: bodyAddTask,
         });
 
-        endpoint = `${this.baseEndpointTask}${request.cardAddId}`; //меняем эндпоинт на тот, что касается новосозданой задачи
+        endpoint = `${this.baseEndpointTask}${request.cardAddId}`;
 
         await request.get({
             endpoint: endpoint,
             token: request.tokenAuthorization,
         })
 
-        this.renderNewCard(request.resultGetRequest); //рендерим новосозданную задачу в конец списка
+        this.renderNewCard(request.resultGetRequest);
     }
 
-    //метод превращает данные с сервера о дате создания карточки в нужный формат для рендера
     getDateCreated(dateCreate) {
         let dateCreateArr = dateCreate.split("T");
         let dateArr = dateCreateArr[0].split("-");
@@ -102,7 +101,7 @@ export class Task {
         }
         return `${dateToCard} ${timeToCard}`;
     }
-    //метод превращает данные с сервера о времени трэкинга карточки в нужный формат для рендера
+   
     getTimeTracking(timeSeconds) {
         let savedTimeSeconds = Math.round(+timeSeconds / 1000);
         const checkLength = (data) => {
@@ -117,13 +116,13 @@ export class Task {
         let seconds = checkLength(savedTimeSeconds % 60);
         return `${hours}:${minutes}:${seconds}`;
     }
-    //цикл рендерит все карточки
+    
     renderAllCards(cardsData) {
         for (let i = 0; i < cardsData.length; i++) {
             this.renderNewCard(cardsData[i]);
         }
     }
-    //рендер 1 карты с задачей
+    
     renderNewCard(cardsData) {
         const cardWrapper = document.createElement("div");
         cardWrapper.classList.add("project__taskcard");
@@ -200,7 +199,7 @@ export class Task {
         document.getElementById("taskcards-container").append(cardWrapper);
         cardWrapper.classList.add("set-opacity");
     }
-    //метод, что включает/выключает таймер
+    
     async setTimeTracking(options) {
         const {
             checkboxTimeTracked,
@@ -247,7 +246,7 @@ export class Task {
             runTimer();
         });
     }
-    //метод-обработчик события, что отвечает за выполнение или рестарт карточки
+    
     doneOrRestartCard(options) {
         const {
             doneButton,
@@ -292,7 +291,7 @@ export class Task {
             });
         });
     }
-    //удаление карты
+    
     deleteCard(options) {
         const {
             deleteTaskBtn,
@@ -300,7 +299,7 @@ export class Task {
             cardsData,
         } = options
         deleteTaskBtn.addEventListener("click", () => {
-            cardWrapper.classList.add("remove-opacity"); //для анимирования удаления карты
+            cardWrapper.classList.add("remove-opacity");
             setTimeout(() => {
                 cardWrapper.remove();
             }, 1500);
