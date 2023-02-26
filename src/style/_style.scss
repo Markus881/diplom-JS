@@ -1,0 +1,116 @@
+body {
+    font-family: "IBM Plex Mono", monospace;
+    background: url("../img/BMW.jpg") no-repeat;
+    background-size: cover;
+    background-position-y: 35%;
+    z-index: 0;
+  }
+  
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    background-color: none;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .bold {
+    font-weight: bold;
+    font-size: 26px;
+  }
+  
+  .set-opacity {
+    animation-name: set-opacity;
+    animation-duration: 800ms;
+    transition-timing-function: linear;
+  }
+  
+  .remove-opacity {
+    animation-name: remove-opacity;
+    animation-duration: 1500ms;
+    transition-timing-function: linear;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    transform: translateY(-300px);
+    transition: all 1500ms ease-out;
+  }
+  
+  .error-red-background {
+    background-color: rgba(255, 0, 0, 0.386);
+  }
+  
+  .project {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 100px;
+    padding-left: 50px;
+  }
+  
+  @keyframes set-opacity {
+    0% {
+      opacity: 0;
+    }
+  
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes remove-opacity {
+    0% {
+      opacity: 1;
+    }
+  
+    100% {
+      opacity: 0;
+    }
+  }
+  
+  @media (max-width: 1200px) {
+    .container {
+      max-width: 1090px;
+    }
+    .project {
+      margin-top: 60px;
+    }
+  }
+  
+  @media (max-width: 1090px) {
+    .container {
+      max-width: 800px;
+    }
+  
+    .project {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  
+  @media (max-width: 800px) {
+    .container {
+      max-width: 550px;
+    }
+    .project {
+      padding-left: 0;
+    }
+  }
+  
+  @media (max-width: 550px) {
+    .container {
+      max-width: 480px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .container {
+      max-width: 360px;
+    }
+  }
+  

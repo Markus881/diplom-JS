@@ -1,0 +1,109 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    padding: 25px 0;
+    background-color: #2bf0f081;
+    box-shadow: -1px 26px 18px -24px rgba(0,0,0,0.75);
+}
+.header > h1 {
+    margin: 0;
+    padding-left: 108px;
+    font-size: 32px;
+    font-weight: 700;
+    position: relative;
+}
+.header-logout-container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+.header-logout-container > button {
+    margin-right: 108px;
+    color: #000000;
+    /* padding: 5px 5px; */
+    font-size: 16px;
+    border-radius: 10px;
+    background: #eff873;
+}
+.header-logout-container > button:hover {
+    box-shadow: none;
+}
+.header-logout-container > button:focus {
+    box-shadow: none;
+}
+.header-logout-container > button:active {
+    color: #747171;
+    box-shadow: inset 4px 4px 12px #c5c5c5,
+             inset -4px -4px 12px #ffffff;
+}
+.header-logout-container > p {
+    margin-right: 25px;
+    font-weight: 600;
+    border-bottom: 3px #090909 solid;
+}
+
+@keyframes animation-header {
+    0% {
+        left: -10px;
+    }
+    50% {
+        left: 5px;
+    }
+    100% {
+        left: -10px;
+    }
+}
+
+@media (max-width: 800px) {
+    .header-logout-container > button {
+        width: 120px;
+        padding: 5px 5px;
+        margin-right: 80px;
+    }
+    .header > h1 {
+        font-size: 26px;
+    }
+}
+
+@media (max-width: 650px) {
+    .header {
+        padding: 15px;
+    }
+    .header > h1 {
+        font-size: 24px;
+        padding-left: 80px;
+    }
+    .header-logout-container {
+        flex-direction: column-reverse;
+        margin-right: 50px;
+    }
+    .header-logout-container > button {
+        margin-right: 0;
+        font-size: 14px;
+        height: 30px;
+    }
+    .header-logout-container>p {
+        margin-bottom: 10px;
+        margin-left: 15px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-logout-container {
+        margin-right: 30px;
+    }
+
+    .header > h1 {
+        font-size: 22px;
+        padding-left: 40px;
+    }
+
+    .header-logout-container > button {
+        width: 100px;
+    }
+}

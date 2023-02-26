@@ -1,0 +1,175 @@
+.project__taskcards-container {
+    z-index: 3;
+    height: 90vh;
+    width: 500px;
+    padding-right: 80px;
+    margin-top: -50px;
+    position: relative;
+}
+
+.project__taskcard {
+    margin-bottom: 30px;
+    position: relative;
+    border-radius: 5px;
+    border: transparent;
+    padding: 20px;
+    background: linear-gradient(145deg, #00eeff, #c92fc9);
+   
+}
+
+.project__taskcard-name {
+    max-width: 92%;
+    font-size: 22px;
+    line-height: 24px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    word-wrap: break-word;
+
+}
+
+.project__taskcard-description {
+    font-weight: 500;
+    padding-bottom: 15px;
+    line-height: 18px;
+    word-wrap: break-word;
+}
+
+.project__taskcard-checkbox-container {
+    display: flex;
+    align-items: center;
+    padding-bottom: 15px;
+    font-size: 14px;
+}
+
+.project__taskcard-checkbox {
+    margin-right: 15px;
+}
+
+.project__taskcard-close {
+    border: 1px solid black;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 3px;
+    cursor: pointer;
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+.toggle-done-task {
+    text-decoration: line-through;
+}
+
+.project__taskcard-time {
+    margin-left: 45px;
+}
+
+.project__taskcard-checkbox {
+    position: absolute;
+    display: block;
+    height: 33px;
+    width: 33px;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 3;
+}
+
+.project__taskcard-checkbox-wrapper {
+    z-index: 2;
+    position: absolute;
+    height: 33px;
+    width: 33px;
+    background-color: #5cb85c;
+    border-radius: 50%;
+    transition: all 200ms linear;
+}
+
+.project__taskcard-checkbox-wrapper-grey {
+    background-color: #9b9b9b;
+}
+
+.project__taskcard-checkbox-wrapper>div:first-child {
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 50%;
+    left: 54%;
+    transform: translate(-50%, -50%);
+    border-top: 6px solid transparent;
+    border-left: 12px solid #FFFFFF;
+    border-bottom: 6px solid transparent;
+}
+
+.project__taskcard-checkbox:checked~.project__taskcard-checkbox-wrapper {
+    background-color: rgb(234, 9, 9);
+    transition: all 200ms linear;
+}
+
+.project__taskcard-checkbox:checked~.project__taskcard-checkbox-wrapper>div:first-child {
+    left: 39%;
+    border-top: 8px solid #FFFFFF;
+    border-left: 4px solid #FFFFFF;
+    border-bottom: 4px solid #FFFFFF;
+}
+
+.project__taskcard-checkbox:checked~.project__taskcard-checkbox-wrapper>div:last-child {
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 50%;
+    left: 61%;
+    transform: translate(-50%, -50%);
+    border-top: 8px solid #FFFFFF;
+    border-left: 4px solid #FFFFFF;
+    border-bottom: 4px solid #FFFFFF;
+}
+
+.project__taskcard-date {
+    font-size: 14px;
+    padding-bottom: 15px;
+}
+
+.project__taskcard-btn {
+    width: 130px;
+    height: 30px;
+    border-radius: 5px;
+    color: #000000;
+}
+
+.project__taskcard-btn:focus {
+    box-shadow: none;
+}
+
+.project__taskcard-close {
+    font-weight: 700;
+    margin: 12px;
+    border: transparent;
+    border-radius: 50%;
+    padding: 6px 8px;
+}
+
+@media (max-width: 1200px) {
+    .project__taskcards-container {
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 1090px) {
+    .project__taskcards-container {
+        margin-top: 50px;
+        padding-right: 0;
+    }
+}
+
+@media (max-width: 550px) {
+    .project__taskcards-container {
+        width: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    .project__taskcards-container {
+        width: 340px;
+    }
+}
