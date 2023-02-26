@@ -13,10 +13,10 @@ export class Form {
         this.inputName = inputName;
         this.inputPassword = inputPassword;
         this.inputPassSwitch = inputPassSwitch;
-        this.isActiveRegister = false;//для того чтоб понимать какую форму рендерить (регистрации или логина)
+        this.isActiveRegister = false;
         this.formContainer = document.body.querySelector(".project");
     }
-    //метод для рендера стартовой формы один. в зависимости от выбраного заголовка формы она рендерится с name или без него 
+
     renderLoginOrRegisterForm (container) {
         const formContainer = document.createElement("div");
         formContainer.classList.add("project__form-container");
@@ -33,18 +33,18 @@ export class Form {
         formHeaderContainer.append(formHeaderLogin, formHeaderRegister);
         form.append(formHeaderContainer);
 
-        this.inputEmail.createInput(form);//добавляем инпут почты
+        this.inputEmail.createInput(form);
 
         if (this.isActiveRegister) {
-            this.inputName.createInput(form);//добавляем инпут имени (если регистрация)
+            this.inputName.createInput(form);
             formHeaderRegister.classList.add("bold");
         } else {
             formHeaderLogin.classList.add("bold");
         }
 
-        this.inputPassword.createInput(form); //добавляем инпут пароля
+        this.inputPassword.createInput(form); 
 
-        this.inputPassSwitch.createCheckbox(form); // добавляем чекбокс на переключение отображения пароля
+        this.inputPassSwitch.createCheckbox(form); 
 
         const button = document.createElement("button");
         button.setAttribute("type", "submit");
@@ -55,7 +55,7 @@ export class Form {
 
         formContainer.append(form);
         formContainer.classList.add("set-opacity");
-        container.append(formContainer);//тут добавляется стартовая форма
+        container.append(formContainer);
 
         formHeaderLogin.addEventListener("click", () => {
             this.formContainer.innerHTML = "";
@@ -71,9 +71,7 @@ export class Form {
         this.loginOrRegisterUser(form);
     }
 
-    //validation username - 1.username is 1-20 characters long, 2. no _ or . at the beginning or at the end, 3. only letters and numbers and ._
-    //validation password Minimum eight characters, at least one uppercase letter, one lowercase letter and one number
-    //функция для валидации данных пользователя
+
     inputsValidation () {
         const name = document.getElementById("input_name");
         const email = document.getElementById("input_email");
@@ -92,7 +90,7 @@ export class Form {
         }
 
         const errorsInputs = document.querySelectorAll(".error-red-background");
-            if (errorsInputs.length > 0) { // убираем красную заливку если повторная валидация успешна и скрываем подсказку
+            if (errorsInputs.length > 0) { 
                 errorsInputs.forEach ((node) => {
                 node.classList.remove("error-red-background");
                 document.getElementById(`tooltip_${node.id}`).setAttribute("hidden", "");
@@ -103,7 +101,7 @@ export class Form {
             let invalidInputData = { isNameValid, isEmailValid, isPasswordValid };
             for (let inputValue in invalidInputData) {
                 if (!invalidInputData[inputValue]) {
-                    switch (inputValue) {  //в случае ошибки валидации данных открываем нужную подсказку и красим поле в красный
+                    switch (inputValue) {  
                         case "isNameValid":
                             document.getElementById("tooltip_input_name").removeAttribute("hidden");
                             document.getElementById("input_name").classList.add("error-red-background");
@@ -121,7 +119,7 @@ export class Form {
             }
         }
     }
-    //метод обработчик события для сабмита формы регистрации
+   
     loginOrRegisterUser (form) {
 
         const handleFormSubmit = async (event) => {
@@ -130,7 +128,7 @@ export class Form {
 
             let currentInputs = document.querySelectorAll(".project__form-input");
             currentInputs.forEach((input) => {
-                input.nextElementSibling.setAttribute("hidden", "");//прячем все подсказки о правилах валидации
+                input.nextElementSibling.setAttribute("hidden", "");
             })
 
             const convertFormDataToObject = (formData) => {
@@ -156,7 +154,7 @@ export class Form {
                 this.renderLoginOrRegisterForm(this.formContainer);
 
                 const message = new ModalWindowMessage();
-                message.renderWindowMessage();//сообщение о успешной регистрации
+                message.renderWindowMessage();
             } else {
                 
                 const endpointToLogin = "https://byte-tasks.herokuapp.com/api/auth/login";
@@ -167,7 +165,7 @@ export class Form {
                 });
                 this.tokenAuthorization = request.tokenAuthorization;
                 this.getLogoutInHeader(this.tokenAuthorization);
-                sessionStorage.setItem("authorizedUser", JSON.stringify({ email, password }));//запись данных в sessionStorage
+                sessionStorage.setItem("authorizedUser", JSON.stringify({ email, password }));
                 this.formContainer.innerHTML = "";
             }
         }
@@ -179,12 +177,12 @@ export class Form {
             if (this.isInputDataValid) {
                 await handleFormSubmit (event);
                 if (this.tokenAuthorization) {
-                    renderTaskUI(this.formContainer);//после успешного сабмита рендерим интерфейс скарточками
+                    renderTaskUI(this.formContainer);
                 }
             }
         })
     }
-    //метод, что авторизирует пользователя используя данные sessionStorage, если они есть
+   
     async sessionAuthorization () {
         const authorizedUser = JSON.parse(sessionStorage.getItem("authorizedUser"));
         const { email, password} = authorizedUser;
@@ -198,7 +196,7 @@ export class Form {
         this.getLogoutInHeader(this.tokenAuthorization);
         this.formContainer.innerHTML = "";
     }
-    //метод для полученя меню Logout после успешной валидации
+    
     async getLogoutInHeader (tokenAuthorization) {
         await request.get({
             endpoint: "https://byte-tasks.herokuapp.com/api/auth/user/self",
